@@ -11,7 +11,7 @@
     </parent>
 
     <artifactId>security-pom</artifactId>
-    <packaging>pom</packaging>
+    <packaging>security-pom</packaging>
 
     <name>security-pom</name>
 

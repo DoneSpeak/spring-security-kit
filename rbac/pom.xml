@@ -6,14 +6,12 @@
 
     <parent>
         <groupId>io.github.donespeak.springsecuritykit</groupId>
-        <artifactId>security-pom</artifactId>
+        <artifactId>security-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath>../pom/pom.xml</relativePath>
+        <relativePath>../parent/pom.xml</relativePath>
     </parent>
 
-    <artifactId>security-parent</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>security-rbac</artifactId>
 
-    <name>security-parent</name>
-
+    <name>security-rbac</name>
 </project>
