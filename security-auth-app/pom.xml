@@ -6,11 +6,18 @@
         <groupId>io.github.donespeak.springsecuritykit</groupId>
         <artifactId>security-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath>../parent/pom.xml</relativePath>
+        <relativePath>../security-parent/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>security-auth</artifactId>
+    <artifactId>security-auth-app</artifactId>
 
-    <name>security-auth</name>
+    <name>security-auth-app</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.github.donespeak.springsecuritykit</groupId>
+            <artifactId>security-auth-core</artifactId>
+        </dependency>
+    </dependencies>
 </project>

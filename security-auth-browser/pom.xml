@@ -7,10 +7,10 @@
         <groupId>io.github.donespeak.springsecuritykit</groupId>
         <artifactId>security-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath>../parent/pom.xml</relativePath>
+        <relativePath>../security-parent/pom.xml</relativePath>
     </parent>
 
-    <artifactId>security-auth-browser</artifactId>
+    <artifactId>security-auth-io.github.donespeak.springsecuritykit.browser</artifactId>
 
-    <name>security-auth-browser</name>
+    <name>security-auth-io.github.donespeak.springsecuritykit.browser</name>
 </project>

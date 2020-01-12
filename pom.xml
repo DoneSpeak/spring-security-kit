@@ -13,13 +13,16 @@
     <url>https://github.com/DoneSpeak/spring-security-kit</url>
 
     <modules>
-        <module>parent</module>
-        <module>pom</module>
-        <module>rbac</module>
-        <module>sso</module>
-        <module>auth-app</module>
-        <module>auth-core</module>
-        <module>auth-browser</module>
+        <module>security-parent</module>
+        <module>security-bom</module>
+        <module>security-rbac</module>
+        <module>security-sso</module>
+        <module>security-auth-app</module>
+        <module>security-auth-core</module>
+        <module>security-auth-io.github.donespeak.springsecuritykit.browser</module>
+        <module>social-weixin</module>
+        <module>social-qq</module>
+        <module>security-samples</module>
     </modules>
 
     <properties>
