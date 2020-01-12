@@ -39,7 +39,7 @@
                 <version>${springboot.version}</version>
                 <!-- <relativePath /> --> <!-- lookup parent from repository -->
                 <type>pom</type>
-                <scope>import</scope>
+                <scope>import</scope> 
             </dependency>
 
             <dependency>
