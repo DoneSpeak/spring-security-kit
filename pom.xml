@@ -19,7 +19,7 @@
         <module>security-sso</module>
         <module>security-auth-app</module>
         <module>security-auth-core</module>
-        <module>security-auth-io.github.donespeak.springsecuritykit.browser</module>
+        <module>security-auth-browser</module>
         <module>social-weixin</module>
         <module>social-qq</module>
         <module>security-samples</module>

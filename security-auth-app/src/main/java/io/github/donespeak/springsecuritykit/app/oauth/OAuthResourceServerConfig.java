@@ -14,7 +14,7 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
 @EnableResourceServer
 public class OAuthResourceServerConfig extends ResourceServerConfigurerAdapter {
 
-    private static final String DEMO_RESOURCE_ID = "order";
+    public static final String DEMO_RESOURCE_ID = "order";
 
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) {

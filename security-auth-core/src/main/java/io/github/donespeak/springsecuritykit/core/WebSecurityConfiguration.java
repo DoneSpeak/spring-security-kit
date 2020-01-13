@@ -25,10 +25,13 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
-    }
+    // @Override
+    // protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    // 如果直接覆盖该方法，而不调用父类的方法，就会报一下的错误。 -> 继承重写方法的时候，要特别注意是否覆盖了父类原本的实现
+    // TODO 查明是什么原因
+    //     // super.configure(auth);
+    //     // No AuthenticationProvider found for org.springframework.security.authentication.UsernamePasswordAuthenticationToken
+    // }
 
     @Bean
     @Override
@@ -49,8 +52,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // 解决：No AuthenticationProvider found for org.springframework.security.authentication.UsernamePasswordAuthenticationToken
-        http.authenticationProvider(new AnonymousAuthenticationProvider("default"));
         // @formatter:off
         http
             .requestMatchers().anyRequest()

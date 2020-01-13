@@ -1,24 +1,24 @@
 package io.github.donespeak.springsecuritykit.app.oauth;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.oauth2.config.annotation.builders.InMemoryClientDetailsServiceBuilder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.token.AccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Yang Guanrong
@@ -29,10 +29,10 @@ import java.util.List;
 public class OAuthAuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
     @Autowired
-    private UserDetailsService userDetailsService;
-
-    @Autowired
     private AuthenticationManager authenticationManager;
+
+    // @Autowired
+    // private RedisConnectionFactory redisConnectionFactory;
 
     @Autowired
     private TokenStore tokenStore;
@@ -59,21 +59,30 @@ public class OAuthAuthorizationServerConfig extends AuthorizationServerConfigure
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        InMemoryClientDetailsServiceBuilder builder = clients.inMemory();
-        String secret = passwordEncoder.encode("123456");
-        builder.withClient("app")
-            .secret(secret)
+        // InMemoryClientDetailsServiceBuilder builder = clients.inMemory();
+        String finalSecret = passwordEncoder.encode("123456");
+        // builder.withClient("app")
+        // .secret(secret)
+        // .authorizedGrantTypes("password", "refresh_token")
+        // .accessTokenValiditySeconds(7200)
+        // .refreshTokenValiditySeconds(7200)
+        // .scopes("all");
+        // 配置两个客户端,一个用于password认证一个用于client认证
+        clients.inMemory().withClient("client_1").resourceIds(OAuthResourceServerConfig.DEMO_RESOURCE_ID)
+            .authorizedGrantTypes("client_credentials", "refresh_token").scopes("select").authorities("oauth2")
+            .secret(finalSecret).and().withClient("client_2").resourceIds(OAuthResourceServerConfig.DEMO_RESOURCE_ID)
             .authorizedGrantTypes("password", "refresh_token")
-            .accessTokenValiditySeconds(7200)
-            .refreshTokenValiditySeconds(7200)
-            .scopes("all");
+            .scopes("select").authorities("oauth2").secret(finalSecret);
     }
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints.tokenStore(tokenStore)
+        endpoints
+            // .tokenStore(new RedisTokenStore(redisConnectionFactory))
+            .tokenStore(tokenStore)
             .authenticationManager(authenticationManager)
             // .userDetailsService(userDetailsService)
+            // 如果不增加如下的配置，会放回请求方法不支持的异常
             .allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST);
 
         if(jwtAccessTokenConverter != null && jwtTokenEnhancer != null) {
