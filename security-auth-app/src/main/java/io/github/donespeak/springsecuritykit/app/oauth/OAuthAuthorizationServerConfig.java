@@ -2,8 +2,10 @@ package io.github.donespeak.springsecuritykit.app.oauth;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.builders.InMemoryClientDetailsServiceBuilder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -41,11 +43,16 @@ public class OAuthAuthorizationServerConfig extends AuthorizationServerConfigure
     @Autowired(required = false)
     private TokenEnhancer jwtTokenEnhancer;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     /**
      * tokenKey的访问权限表达式配置
      */
     @Override
-    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+    public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
+        //允许表单认证
+        oauthServer.allowFormAuthenticationForClients();
         // TODO 为什么没有生效？
         // security.tokenKeyAccess("permitAll()");
     }
@@ -53,7 +60,9 @@ public class OAuthAuthorizationServerConfig extends AuthorizationServerConfigure
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         InMemoryClientDetailsServiceBuilder builder = clients.inMemory();
+        String secret = passwordEncoder.encode("123456");
         builder.withClient("app")
+            .secret(secret)
             .authorizedGrantTypes("password", "refresh_token")
             .accessTokenValiditySeconds(7200)
             .refreshTokenValiditySeconds(7200)
@@ -64,7 +73,8 @@ public class OAuthAuthorizationServerConfig extends AuthorizationServerConfigure
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.tokenStore(tokenStore)
             .authenticationManager(authenticationManager)
-            .userDetailsService(userDetailsService);
+            // .userDetailsService(userDetailsService)
+            .allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST);
 
         if(jwtAccessTokenConverter != null && jwtTokenEnhancer != null) {
             TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
