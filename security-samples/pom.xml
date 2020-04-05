@@ -15,6 +15,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>security-sample-oauth</module>
+        <module>security-auth-app-sample</module>
+        <module>security-auth-browser-sample</module>
     </modules>
 
 </project>

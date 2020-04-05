@@ -1,6 +1,7 @@
 package io.github.donespeak.springsecuritykit.core;
 
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import io.github.donespeak.springsecuritykit.core.properties.SecurityProperties;
@@ -10,6 +11,7 @@ import io.github.donespeak.springsecuritykit.core.properties.SecurityProperties;
  * @date 2020/01/12 20:03
  */
 @Configuration
+@ComponentScan(basePackageClasses = SecurityCoreConfig.class)
 @EnableConfigurationProperties(SecurityProperties.class)
 public class SecurityCoreConfig {
 

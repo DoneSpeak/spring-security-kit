@@ -3,6 +3,8 @@ package io.github.donespeak.springsecuritykit.core.properties;
 import lombok.Data;
 
 /**
+ * OAuth 2.0的配置
+ *
  * @author Yang Guanrong
  * @date 2020/01/12 20:33
  */

@@ -10,7 +10,14 @@
         <relativePath>../security-parent/pom.xml</relativePath>
     </parent>
 
-    <artifactId>security-auth-io.github.donespeak.springsecuritykit.browser</artifactId>
+    <artifactId>security-auth-browser</artifactId>
 
-    <name>security-auth-io.github.donespeak.springsecuritykit.browser</name>
+    <name>security-auth-browser</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.github.donespeak.springsecuritykit</groupId>
+            <artifactId>security-auth-core</artifactId>
+        </dependency>
+    </dependencies>
 </project>
