@@ -20,7 +20,8 @@ public class BasicAuthorizeConfigProvider implements AuthorizeConfigProvider {
 	@Override
     public boolean config(ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry registry) {
 		registry.antMatchers(SecurityConstants.DEFAULT_UNAUTHENTICATION_URL,
-			securityProperties.getBrowser().getSignInPage()).permitAll();
+			securityProperties.getBrowser().getSignInPage(),
+			SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX + "/*").permitAll();
         return false;
     }
 }
