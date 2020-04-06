@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import io.github.donespeak.springsecuritykit.core.properties.SecurityConstants;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.social.connect.web.HttpSessionSessionStrategy;
 import org.springframework.social.connect.web.SessionStrategy;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,8 +33,7 @@ public class ValidateCodeController {
         throws Exception {
         ValidateCodeProcessor processor = validateCodeProcessorHolder.findValidateCodeProcessor(type);
         if(processor == null) {
-            // TODO 这里应该抛出一个404的异常
-            return;
+            throw new NoHandlerFoundException("GET", request.getRequestURI(), null);
         }
         processor.create(new ServletWebRequest(request, response));
     }
