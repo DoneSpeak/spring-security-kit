@@ -17,15 +17,21 @@ public abstract class AbstractValidateCodeProcessor<T extends ValidateCode> impl
 
     @Override
     public void create(ServletWebRequest request) throws Exception {
-        T validateCode = (T) getValidateCodeGenerator().generate(request);
+        T validateCode = generate(request);
         save(request, validateCode);
         send(request, validateCode);
+    }
+
+    private T generate(ServletWebRequest request) {
+        return (T) getValidateCodeGenerator().generate(request);
     }
 
     private void save(ServletWebRequest request, ValidateCode validateCode) {
         ValidateCode code = new ValidateCode(validateCode.getCode(), validateCode.getExpireTime());
         validateCodeRepository.save(request, code, getValidateCodeType());
     }
+
+    protected abstract void send(ServletWebRequest request, T validateCode) throws Exception;
 
     @Override
     public void validate(ServletWebRequest request) {
@@ -55,6 +61,4 @@ public abstract class AbstractValidateCodeProcessor<T extends ValidateCode> impl
     }
 
     protected abstract ValidateCodeGenerator getValidateCodeGenerator();
-
-    protected abstract void send(ServletWebRequest request, T validateCode) throws Exception;
 }

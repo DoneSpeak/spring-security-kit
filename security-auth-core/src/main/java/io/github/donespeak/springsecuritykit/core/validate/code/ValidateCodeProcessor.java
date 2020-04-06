@@ -17,5 +17,6 @@ public interface ValidateCodeProcessor {
 	 */
 	void validate(ServletWebRequest request);
 
+	// TODO 这个方法不应该属于这里，要办法优化
 	ValidateCodeType getValidateCodeType();
 }
