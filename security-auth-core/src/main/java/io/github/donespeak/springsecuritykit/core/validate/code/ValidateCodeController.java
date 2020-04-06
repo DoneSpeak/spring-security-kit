@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.ServletWebRequest;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 /**
  * @author Yang Guanrong
@@ -29,6 +30,11 @@ public class ValidateCodeController {
     @GetMapping(SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX + "/{type}")
     public void createCode(@PathVariable String type, HttpServletRequest request, HttpServletResponse response)
         throws Exception {
-        validateCodeProcessorHolder.findValidateCodeProcessor(type).create(new ServletWebRequest(request, response));
+        ValidateCodeProcessor processor = validateCodeProcessorHolder.findValidateCodeProcessor(type);
+        if(processor == null) {
+            // TODO 这里应该抛出一个404的异常
+            return;
+        }
+        processor.create(new ServletWebRequest(request, response));
     }
 }
