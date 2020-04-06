@@ -1,0 +1,18 @@
+@startuml
+
+title Remember Me 认证过程
+
+== 认证过程 ==
+浏览器 -> UsernamePasswordAuthentication: 请求认证
+UsernamePasswordAuthentication -> RememberMeService: 认证成功
+RememberMeService -> TokenRepository: 将Token写入数据库
+RememberMeService -> 浏览器: 将Token写入浏览器Cookie
+
+== Remember Me认证过程==
+
+浏览器 -> RememberMeAuthenticationFilter: 服务器请求
+RememberMeAuthenticationFilter -> RememberMeService: 读取Cookie中的Token
+RememberMeService -> TokenRepository: 从数据库中查找Token
+RememberMeService -> UserDetailsService: 利用Token中获取到的用户名信息获取UserDetails
+
+@enduml

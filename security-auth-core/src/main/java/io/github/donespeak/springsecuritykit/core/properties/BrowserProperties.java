@@ -19,4 +19,9 @@ public class BrowserProperties {
 	 * 认证成功之后的响应类型
 	 */
 	private SingInResponseType signInResponseType = SingInResponseType.JSON;
+
+	/**
+	 * 记住我功能有效时间
+	 */
+	private int rememberMeSeconds = 3600;
 }

@@ -22,6 +22,6 @@ public class ValidateCodeBeanConfig {
 	public ImageCodeGenerator imageCodeGenerator() {
         ValidateCodeProperties.ImageCodeProperties imageCodeProperties = securityProperties.getCode().getImage();
         return new ImageCodeGenerator(imageCodeProperties.getWidth(), imageCodeProperties.getHeight(),
-            imageCodeProperties.getHeight(), imageCodeProperties.getExpireIn());
+            imageCodeProperties.getLength(), imageCodeProperties.getExpireIn());
 	}
 }
