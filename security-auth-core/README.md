@@ -1,16 +1,18 @@
 Security Auth Code
 ===
 
-开放接口
----
-
-### 获取验证码
-
-### 
-
 验证码
 ----
 
 ### 图片验证码
 
-请求参数名为：`imageCode`
+```shell script
+curl http://localhost:8080/code/image
+```
+
+```shell script
+post http://localhost:8080/xxx \
+    -d "imageCode=xxx"
+```
+
+### 

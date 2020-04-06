@@ -1,6 +1,7 @@
 package io.github.donespeak.springsecuritykit.browser;
 
 import io.github.donespeak.springsecuritykit.core.authentication.FormAuthenticationConfig;
+import io.github.donespeak.springsecuritykit.core.authentication.mobile.SmsCodeAuthenticationSecurityConfig;
 import io.github.donespeak.springsecuritykit.core.authorize.AuthorizeConfigManager;
 import io.github.donespeak.springsecuritykit.core.properties.SecurityProperties;
 import io.github.donespeak.springsecuritykit.core.validate.code.ValidateCodeSecurityConfig;
@@ -34,6 +35,9 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
 	private ValidateCodeSecurityConfig validateCodeSecurityConfig;
 
 	@Autowired
+	private SmsCodeAuthenticationSecurityConfig smsCodeAuthenticationSecurityConfig;
+
+	@Autowired
 	private UserDetailsService userDetailsService;
 
 	@Autowired
@@ -48,6 +52,8 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
 		formAuthenticationConfig.configure(http);
 
 		http.apply(validateCodeSecurityConfig)
+				.and()
+			.apply(smsCodeAuthenticationSecurityConfig)
 				.and()
 			.rememberMe()
 				.tokenRepository(persistenceTokenRepository())

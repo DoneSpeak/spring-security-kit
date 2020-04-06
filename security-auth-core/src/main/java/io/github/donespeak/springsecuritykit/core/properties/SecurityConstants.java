@@ -33,4 +33,12 @@ public interface SecurityConstants {
 	 * 验证短信验证码时，http请求中默认携带的短信验证码信息的参数名称
 	 */
 	String DEFAULT_PARAMETER_NAME_CODE_SMS = "smsCode";
+	/**
+	 * 发送短信验证码和验证短信验证码时用的手机号码参数名
+	 */
+	String DEFAULT_PARAMETER_NAME_MOBILE = "mobile";
+	/**
+	 * 短信验证码登录接口
+	 */
+	String DEFAULT_SIGN_IN_PROCESSING_URL_MOBILE = "/authentication/mobile";
 }

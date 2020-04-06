@@ -49,6 +49,8 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
 	    urlMapTypes.put(SecurityConstants.DEFAULT_SIGN_IN_PROCESSING_URL_FORM, ValidateCodeType.IMAGE);
 	    // TODO 不方便拓展新的验证方式
         addUrlToMap(securityProperties.getCode().getImage().getUrls(), ValidateCodeType.IMAGE);
+        urlMapTypes.put(SecurityConstants.DEFAULT_SIGN_IN_PROCESSING_URL_MOBILE, ValidateCodeType.SMS);
+        addUrlToMap(securityProperties.getCode().getSms().getUrls(), ValidateCodeType.SMS);
     }
 
     private void addUrlToMap(String urlsString, ValidateCodeType type) {
