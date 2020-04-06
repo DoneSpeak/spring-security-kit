@@ -1,8 +1,12 @@
 package io.github.donespeak.springsecuritykit.core.validate.code;
 
-import io.github.donespeak.springsecuritykit.core.validate.code.image.ImageCodeGenerator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import io.github.donespeak.springsecuritykit.core.properties.SecurityProperties;
+import io.github.donespeak.springsecuritykit.core.properties.ValidateCodeProperties;
+import io.github.donespeak.springsecuritykit.core.validate.code.image.ImageCodeGenerator;
 
 /**
  * @author Yang Guanrong
@@ -11,8 +15,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ValidateCodeBeanConfig {
 
+    @Autowired
+    private SecurityProperties securityProperties;
+
 	@Bean("imageCodeGenerator")
 	public ImageCodeGenerator imageCodeGenerator() {
-		return new ImageCodeGenerator(50, 30, 6, 60);
+        ValidateCodeProperties.ImageCodeProperties imageCodeProperties = securityProperties.getCode().getImage();
+        return new ImageCodeGenerator(imageCodeProperties.getWidth(), imageCodeProperties.getHeight(),
+            imageCodeProperties.getHeight(), imageCodeProperties.getExpireIn());
 	}
 }
