@@ -5,9 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>io.github.donespeak.springsecuritykit</groupId>
-        <artifactId>security-parent</artifactId>
+        <artifactId>social</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath>../security-parent/pom.xml</relativePath>
     </parent>
 
     <artifactId>social-qq</artifactId>

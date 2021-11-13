@@ -1,8 +1,8 @@
 package io.github.donespeak.springsecuritykit.core.validate.code;
 
-import com.sun.tools.javac.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -26,9 +26,12 @@ public class ValidateCodeProcessorHolder {
 	}
 
 	public ValidateCodeProcessor findValidateCodeProcessor(String type) {
+		if(type == null) {
+			return null;
+		}
 		ValidateCodeType validateCodeType;
 		try {
-			validateCodeType = ValidateCodeType.valueOf(StringUtils.toUpperCase(type));
+			validateCodeType = ValidateCodeType.valueOf(type.toUpperCase());
 		} catch (Exception ex) {
 			return null;
 		}

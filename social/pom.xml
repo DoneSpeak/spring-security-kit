@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>io.github.donespeak.springsecuritykit</groupId>
         <artifactId>security-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
         <relativePath>../security-parent/pom.xml</relativePath>
     </parent>
-    <artifactId>social-weixin</artifactId>
+    <modelVersion>4.0.0</modelVersion>
 
-    <name>social-weixin</name>
+    <artifactId>social</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>social-qq</module>
+        <module>social-weixin</module>
+        <module>social-core</module>
+    </modules>
 </project>

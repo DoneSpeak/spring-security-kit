@@ -20,9 +20,8 @@
         <module>security-auth-app</module>
         <module>security-auth-core</module>
         <module>security-auth-browser</module>
-        <module>social-weixin</module>
-        <module>social-qq</module>
         <module>security-samples</module>
+        <module>social</module>
     </modules>
 
     <properties>

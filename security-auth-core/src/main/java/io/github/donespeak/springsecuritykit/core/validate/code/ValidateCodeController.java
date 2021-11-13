@@ -5,9 +5,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import io.github.donespeak.springsecuritykit.core.properties.SecurityConstants;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpMethod;
-import org.springframework.social.connect.web.HttpSessionSessionStrategy;
-import org.springframework.social.connect.web.SessionStrategy;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,10 +17,6 @@ import org.springframework.web.servlet.NoHandlerFoundException;
  */
 @RestController
 public class ValidateCodeController {
-
-    private static final String SESSION_KEY = "SESSION_KEY_IMAGE_CODE";
-
-    private SessionStrategy sessionStrategy = new HttpSessionSessionStrategy();
 
     @Autowired
     private ValidateCodeProcessorHolder validateCodeProcessorHolder;

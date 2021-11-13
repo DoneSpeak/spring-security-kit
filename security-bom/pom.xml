@@ -60,6 +60,16 @@
                 <artifactId>security-sso</artifactId>
                 <version>${current.project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>io.github.donespeak.springsecuritykit</groupId>
+                <artifactId>social-qq</artifactId>
+                <version>${current.project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.donespeak.springsecuritykit</groupId>
+                <artifactId>social-weixin</artifactId>
+                <version>${current.project.version}</version>
+            </dependency>
             <!-- import  -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -77,26 +87,27 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <dependency>
-                <groupId>org.springframework.social</groupId>
-                <artifactId>spring-social-core</artifactId>
-                <version>${spring-social.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.social</groupId>
-                <artifactId>spring-social-web</artifactId>
-                <version>${spring-social.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.social</groupId>
-                <artifactId>spring-social-config</artifactId>
-                <version>${spring-social.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.social</groupId>
-                <artifactId>spring-social-security</artifactId>
-                <version>${spring-social.version}</version>
-            </dependency>
+<!--            spring security 5发布之后，spring social项目已经不再维护了 -->
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.social</groupId>-->
+<!--                <artifactId>spring-social-core</artifactId>-->
+<!--                <version>${spring-social.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.social</groupId>-->
+<!--                <artifactId>spring-social-web</artifactId>-->
+<!--                <version>${spring-social.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.social</groupId>-->
+<!--                <artifactId>spring-social-config</artifactId>-->
+<!--                <version>${spring-social.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.social</groupId>-->
+<!--                <artifactId>spring-social-security</artifactId>-->
+<!--                <version>${spring-social.version}</version>-->
+<!--            </dependency>-->
             <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->
             <dependency>
                 <groupId>io.springfox</groupId>
